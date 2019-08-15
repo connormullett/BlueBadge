@@ -1,0 +1,32 @@
+
+INTRO TO API's
+---
+  - Explain API's and Web API's and their differences
+  - Use and interact with a common Web API such as star wars API
+    * Introduction to the requests library, and documentation
+    * Use this to explain endpoints and json
+    * Use previous knowledge of dictionaries to extract data
+    * Explain the importance of Documentation, People want you to
+      use their API's for whatever reason
+  - Explain HTTP and HTTPS and how they are made up
+    * Body, Headers, Common request types (Verbs)
+  - Intro to Postman for consuming API's
+  - Give the following challenge:
+
+    Using the STARWARS API located at `http://swapi.co/api/`, write a script
+    that counts how many planets, species, and Vehicles are stored in the API
+
+
+    Example output should look like this:
+
+    planets : <num of planets>
+    species : <num of species>
+    vehicles: <num of vehicles>
+
+
+    Challenge Solution:
+
+    import requests
+
+
+

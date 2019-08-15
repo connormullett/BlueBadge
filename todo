@@ -1,0 +1,48 @@
+
+Flask Project
+ - 2 weeks v1
+ - 1 week open source Pull requests
+ - 2 weeks v2
+ - requirements
+
+Intro to API's
+ - What they are
+ - What they do
+
+API Design
+ - REST
+ - 1 day
+
+API Code Along
+ - Well designed
+ - Data driven
+ - 2 days
+
+TDD API
+ - 2 days
+
+Intro to AWS
+ - Broad overview
+ - how services work together
+ - EC2
+
+Deployment and CICD
+ - Versioning and different release methods
+ - Different Tools Methods
+ - ElastikBeanstalk and how it works
+
+Securing Applications in the Cloud
+ - VPC's
+ - Patching
+
+Monitoring and Logging
+ - getting data without logging in
+
+Scripting and Automation
+ - deploy without the AWS Console
+
+CLI Development
+ - Packaging
+ - Click, Clint, and other tools
+ - Uploading packages to Pypi
+
