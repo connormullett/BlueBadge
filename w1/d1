@@ -2,6 +2,9 @@
 INTRO TO API's
 ---
   - Explain API's and Web API's and their differences
+    * An API can be a local package or library that you can access
+    * Some API's can communicate information about the CPU (Temperature, Cores, etc)
+    * Web API's Communicate over HTTP/HTTPS
   - Use and interact with a common Web API such as star wars API
     * Introduction to the requests library, and documentation
     * Use this to explain endpoints and json
@@ -24,9 +27,8 @@ INTRO TO API's
     vehicles: <num of vehicles>
 
 
-    Challenge Solution:
+    Challenge Solution is `star_wars_challenge.py`
 
-    import requests
-
-
+  - Allot time for challenge completion 
+  - Go over challenge solution as final end of day task
 
