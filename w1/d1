@@ -13,6 +13,7 @@ INTRO TO API's
       use their API's for whatever reason
   - Explain HTTP and HTTPS and how they are made up
     * Body, Headers, Common request types (Verbs)
+    * HTTP vs HTTPS and how SSL Encryption works
   - Intro to Postman for consuming API's
   - Give the following challenge:
 

@@ -1,4 +1,53 @@
 
 API Design and RESTful Web Services
 ----
+  - Publish RESTful Web Services module in canvas
+  - Explain Representational State Transfer (REST)
+    * It is an Architectural Style
+    * Used over HTTP
+    * Language Independant (Architecture)
+    * Stateless - requests/responses must have all
+      information needed to carry out a task completely
+    * Normally uses JSON (JavaScript Object Notation) to
+      communicate between Requests/Responses and deliver data
+  - REST Resources and Collections
+    * A resource is a single object
+    * A collection is a group of LIKE resources
+  - Review HTTP Methods
+    GET    used to ask/retreive information
+    PUT    used to attempt to update an entire resource
+    POST   used to send data for some type of write access
+    PATCH  used to attempt to update part of a resource (not all)
+    DELETE used to attempt to remove (delete) a resource 
+  - REST URI's (Uniform Resource Identifiers)
+    * URI's are routes used to identify resources on a computer network
+      - These are also commonly known as endpoints
+      - normally written without the domain name, 
+        ie /search/foo instead of google.com/search/foo
+    * EXAMPLE -
+
+      Our client wants an API to document animals.
+      Users should be allowed to view all animals, view a single animal,  
+      and make an animal that they dont see on the list of animals.
+
+      Our API is located at http://animallist.net
+
+      Using the above information we can plan routes for our API URI's, and
+      our Resouces and Collections
+      
+      Animal is going to be a Resource, it is a single thing
+      Animals is a group of a Resource, therefore a collection
+
+      our URI's need to have specific HTTP Methods associated with them, This is 
+      because we can have the same URI have different actions based on 
+      what VERB they are 
+
+      The following are our URI's for our animal API
+      GET  /animals/ - GET our collection of animals
+      GET  /animals/<animal_id> - every animal will have a unique identifier
+        so we can view our individual resources, this is a very common
+        practice known as a Primary Key. We could also use the name of the
+        animal to identify a resource. For example /animals/cow will retrieve
+        the cow resource so we don't need to know the number
+      POST /animals/ - write a new animal with a POST request
 
