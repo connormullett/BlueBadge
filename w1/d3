@@ -1,0 +1,135 @@
+
+API Code Along - full project located at ./day_three_api.py
+---
+  - Install Postman and explain we will use it later
+  - Introduce Flask and what the library is used for
+    * FLASK - 
+
+      1 Python microframework to make getting started
+        with web applications quick and easy, with the ability
+        to scale up to large complex applications
+      2 Huge ecosystem of helper libraries including:
+        Flask-script  - for creating entry point CLI's
+        Flask-migrate - used for easy handling of DB's
+        Flask-SQLAlchemy - an ORM for connecting SQL with Python
+        Flask-mail - send mail through your app
+        and more ...
+      3 The entire app is stored in one variable (more on this later)
+
+    * WSGI - 
+      1 Stands for Web Server Gateway Interface
+      2 Allows us to run Python applications on a Web Server
+      3 Flask uses this to take the code we write and push it
+        on to a server to be accessible over a network/internet
+
+    * Do not worry about using flask with HTML, just json
+    * Create virtual environments and install Flask
+    * Create a project file called app.py
+    * add the following code to `app.py`
+
+
+      from flask import Flask
+      
+      app = Flask(__name__)
+
+      if __name__ == '__main__':
+        app.run(debug=True)
+
+
+    * The Flask object `app` is what holds all of the information 
+      needed to run our object. Imagine a pizza, when we want more
+      stuff on it, we just throw it on top. When we want more 
+      functionality for our app, we just append it (in a way) to 
+      our `app` object
+    * Run the app with `python app.py` and you'll see a URL in the 
+      terminal output
+    * Navigate to this URL in your browser. You
+      should see a `Not Found` page  
+    * Why is there nothing here? Because we haven't set any routes (or
+      endpoints)
+    * We don't have anything to display for our `root` route
+      - think of this as the difference between foo.com and foo.com/bar
+      - we need to create a `home` route
+
+    Add the following above the import guard (if __name__)
+
+      @app.route('/')
+      def index():
+        return 'Hello World'
+
+    IMPORTANT - 
+      The @app.route() is a `decorator` which is used to define where this 
+      endpoint can handle requests at
+      
+      In raw flask, endpoints are functions, other extensions, Flask-restful
+      and flask-restplus, use Classes to define `resources` rather than single 
+      endpoints. These are known as function based views and class based 
+      views respectively
+
+    * rerun the app and open up the page we were just at, you should see 
+      'Hello World' in your browser
+    * This is all cool, but its not useful as an API. Remember to keep our 
+      API RESTful, we need to be using JSON. What we have now is text being
+      displayed to our browser
+    * Let's change our home page to return JSON which will make 3rd 
+      party apps/scripts to communicate with it better. Replace the return 
+      statement with the following
+
+      return jsonify({'status': 'hello world'}), 200
+
+    * jsonify is a function in the flask library that helps convert a python
+      dictionary to a valid json string. When we return JSON from flask routes,
+      we need to also specify a `status code`
+      - `https://www.restapitutorial.com/httpstatuscodes.html`
+      - study these for a good 5 mins and explore common status codes
+    * Restart the app and navigate back to where we were in the browser. We know
+      see that our app is displaying JSON instead
+
+    * Open Postman and create an account (you can use a google account to register)
+    * Put `http://localhost:5000/` in the request url field and make sure the 
+      request method is GET and press send
+
+    Challenge 1 - 20 minutes
+      
+      Create a new ENDPOINT that will greet you when you by name when go to it
+      The endpoint should be on route `/hello`
+
+    Challenge 2 - if they complete challenge 1, have students attempt this
+      
+      Using the flask documentation, create an endpoint that uses URL parameters
+      to accept any name and return {'status': 'hello <name>'} where <name> is the
+      URL parameter
+
+    Solution 1 - add to codebase
+      
+      @app.route('/hello')
+      def hello():
+        return jsonify({'status': 'hello, <students name>. 
+          We've been expecting you}), 200
+
+    Solution 2 - 
+      
+      @app.roue('/hello/<name>')
+      def hello_person(name):
+        return jsonify({'status': f'hello {name}'})
+
+    * Talk about both solutions and answer questions, maybe talk about other ways
+      of completing the challenge 
+    * Talk about URL parameters as a way for us to send information to our API
+    * Go over how flask takes in URL parameters in the form of function arguments
+    * Play around with the routes in Postman
+
+    Question - what happens when we send a POST or a DELETE request to one of 
+      our endpoints?
+
+    Answer - Nothing, it says 405 (method not allowed). This means that we can only
+      send GET requests, to our endpoints. How do we change this?
+
+    in our root endpoint ('/'), add the following keyword argument to the decorator
+
+      @app.route('/', methods=['GET', 'POST'])
+
+    This will allow us to send POST requests to this endpoint
+
+  POSTing data to API's
+
