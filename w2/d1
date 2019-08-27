@@ -1,0 +1,67 @@
+
+What is Testing
+-----
+
+  Unit Testing
+  Definition - A level of software testing where individual
+    units are tested, rather than intermingling parts
+
+  * This can be related to `proving` 2 + 2 = 4
+  * We know that 2 + 2 = 4, but how do `test` that it is true
+  * This is the basic workings of all unit tests, how can
+  * we make our `test runner` prove our code works as expected
+
+  Test Runner - A program that runs unit tests
+
+  More info on unit testing `http://softwaretestingfundamentals.com/unit-testing/`
+
+  * Python's default test runner is a builtin library called `unittest`
+    who would've known
+
+  * Create a new file called `test_demo.py` and add the following function
+    and import
+    
+    import unittest
+
+    def add_two_numbers(x, y):
+      return x + y
+
+    if __name__ == '__main__':
+      y = add_two_numbers(4,4)
+      print(y)
+
+  * Have students explain line by line what this program is doing and
+    what the EXPECTED output is, 8
+  * WE know that the program will ouput 8, but how do we verify that
+    with a test, how do we test that our function `add_two_numbers()`
+    will always return the sum of two numbers?
+  * Have students think (maybe try and figure out) this question
+  * we write a test case
+
+Writing Test Cases
+  * In `test_demo.py`, add the following class just under `add_two_numbers()`
+
+  class TestDemo(unittest.TestCase):
+    
+    def test_add_two_numbers(self):
+      actual = add_two_numbers(4,4)
+      expected = 8
+      self.assertEqual(actual, expected)
+
+  * Remember how we named our file `test_demo.py`? we now also have a TestCase
+    class that has a function that also starts with `test`. This is how the
+    test runner finds unittests to run. VERY IMPORTANT
+  * create a virtualenv and install pytest
+  * run pytest in your terminal from the same directory as `test_demo.py`
+  * pytest is a test runner that has great visuals and easy to read output
+  * pytest finds all of our test cases and runs them for us, then tells us
+    if our tests passed or failed. 
+  * Our test was simple, it tested if adding two numbers produced the correct
+    sum. 
+  * Our test passed because we gave 4 and 4 as params to the function, saved
+    the output, and tested (self.assertEqual()) if the actual and the expected
+    matched 
+  * This is how we `prove` that our code works, we use code to prove code
+
+  Documentation - https://docs.python.org/3/library/unittest.html
+
