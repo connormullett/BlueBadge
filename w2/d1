@@ -20,7 +20,7 @@ What is Testing
 
   * Create a new file called `test_demo.py` and add the following function
     and import
-    
+
     import unittest
 
     def add_two_numbers(x, y):
@@ -42,7 +42,7 @@ Writing Test Cases
   * In `test_demo.py`, add the following class just under `add_two_numbers()`
 
   class TestDemo(unittest.TestCase):
-    
+
     def test_add_two_numbers(self):
       actual = add_two_numbers(4,4)
       expected = 8
@@ -55,13 +55,57 @@ Writing Test Cases
   * run pytest in your terminal from the same directory as `test_demo.py`
   * pytest is a test runner that has great visuals and easy to read output
   * pytest finds all of our test cases and runs them for us, then tells us
-    if our tests passed or failed. 
+    if our tests passed or failed.
+  * Now do `pytest -v`, and you can see detailed info about every test that
+    was ran
   * Our test was simple, it tested if adding two numbers produced the correct
-    sum. 
+    sum.
   * Our test passed because we gave 4 and 4 as params to the function, saved
     the output, and tested (self.assertEqual()) if the actual and the expected
-    matched 
+    matched
   * This is how we `prove` that our code works, we use code to prove code
 
   Documentation - https://docs.python.org/3/library/unittest.html
+
+Making failing tests pass
+  * Failing tests are not bad, failing tests point you to where your code may
+    have some mistakes. 
+  * Failing tests also give you a warning JUST in case you change something that
+    ends up breaking something else. This is another great reason why testing is
+    important. Changing one piece of code can break something else, and you
+    may only be able to catch it if you have good test coverage
+  * Add the following code to test_demo.py
+
+  def sum_of_sums(w,x,y,z):
+    a = add_two_numbers(w,x)
+    b = add_two_numbers(y,z)
+    return a + b
+  
+  * This function has references to `add_two_numbers`, could you imagine
+    what would happen if we changed add_two_numbers? It would break this function
+
+  * Make add_two_numbers look like the following
+
+    def add_two_numbers(x,y):
+      return x - y
+
+  * and lets say a dev caught this change and changed the test case accordingly,
+    but didnt change the name just to be lazy
+
+    ...
+    actual = add_two_numbers(4,4)
+    expected = 0  # add_two_numbers() now subtracts the two
+    ...
+
+  * Now lets say a tester writes a new test function for this new code that has
+    no coverage
+
+    def test_sum_of_sums(self):
+      actual = sum_of_sums(4,4,4,4)
+      expected = 16  
+      # someone thinks that add_two_numbers
+      # adds numbers together still
+      self.assertEqual(actual, expected)
+
+  * 
 
